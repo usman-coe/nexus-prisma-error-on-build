@@ -1,28 +1,18 @@
-import {
-  makeSchema,
-  asNexusMethod,
-} from 'nexus'
-import { PostType, QueryType, UserType } from './type'
+import { makeSchema, objectType } from 'nexus'
+import { Post } from 'nexus-prisma'
+import './generated/nexus'
 
 export const schema = makeSchema({
   types: [
-    PostType,
-    UserType,
+    objectType({
+      name: Post.$name,
+      definition(t) {
+        t.field(Post.id)
+      },
+    }),
   ],
   outputs: {
     schema: __dirname + '/../schema.graphql',
     typegen: __dirname + '/generated/nexus.ts',
-  },
-  contextType: {
-    module: require.resolve('./context'),
-    export: 'Context',
-  },
-  sourceTypes: {
-    modules: [
-      {
-        module: '@prisma/client',
-        alias: 'prisma',
-      },
-    ],
   },
 })
