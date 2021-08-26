@@ -15,12 +15,13 @@ generator client {
 }
 
 model User {
-  id    String @id
-  posts Post[]
+  id String @id
+  // posts Post[]
 }
 
 model Post {
   id       String @id
-  author   User?  @relation(fields: [authorId], references: [id])
+  // bring this back to trigger the type error...
+  // author   User?  @relation(fields: [authorId], references: [id])
   authorId String
 }
