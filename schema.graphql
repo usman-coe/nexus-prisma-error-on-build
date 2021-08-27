@@ -9,8 +9,3 @@ type Post {
 type Query {
   ok: Boolean!
 }
-
-type User {
-  id: ID!
-  posts: [Post!]!
-}
